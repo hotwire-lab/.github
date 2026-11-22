@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: HotWire Lab Live Apps & Pinout
+    url: https://hotwire-lab.github.io/
+    about: Launch Logic Analyzer, Oscilloscope, SDR, or Serial Terminal directly in your browser.
