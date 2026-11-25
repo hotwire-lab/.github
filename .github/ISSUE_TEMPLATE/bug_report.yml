@@ -12,6 +12,7 @@ body:
         - Oscilloscope
         - SDR
         - Serial Terminal
+        - Signal Generator
         - Web Flasher / hotwire-core
     validations:
       required: true

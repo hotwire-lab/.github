@@ -12,6 +12,7 @@
 | **HotWire Oscilloscope** | [hotwire-lab.github.io/scope](https://hotwire-lab.github.io/scope/) | [`hotwire-lab/scope`](https://github.com/hotwire-lab/scope) | 4-ch 12-bit GDMA ADC Scope (up to 1 MSPS S3 OC), FFT, Math, X-Y, Persistence |
 | **HotWire SDR** | [hotwire-lab.github.io/sdr](https://hotwire-lab.github.io/sdr/) | [`hotwire-lab/sdr`](https://github.com/hotwire-lab/sdr) | 1.84–2.79 GHz RF Spectrum Analyzer, 948 MHz Wideband Scanner, Waterfall & Raw I/Q |
 | **HotWire Serial Terminal** | [hotwire-lab.github.io/serial](https://hotwire-lab.github.io/serial/) | [`hotwire-lab/serial`](https://github.com/hotwire-lab/serial) | Desktop Web Serial & Android WebUSB (CDC-ACM, FTDI, CP210x, CH340, PL2303) + XIAO UART Bridge |
+| **HotWire Signal Generator** | [hotwire-lab.github.io/siggen](https://hotwire-lab.github.io/siggen/) | [`hotwire-lab/siggen`](https://github.com/hotwire-lab/siggen) | Dual-ch DDS waveforms (Sine/Tri/Saw/Noise), HW LEDC Square/PWM up to 20 MHz, Sweep & 4-ch Pattern Gen |
 
 ## Shared Core & Website
 

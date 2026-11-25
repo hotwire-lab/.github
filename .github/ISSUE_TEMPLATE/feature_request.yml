@@ -12,7 +12,7 @@ body:
         - Oscilloscope
         - SDR
         - Serial Terminal
-        - Signal Generator (upcoming)
+        - Signal Generator
         - Shared Core / UI
     validations:
       required: true
