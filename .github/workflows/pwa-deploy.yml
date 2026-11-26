@@ -1,0 +1,71 @@
+name: Deploy HotWire PWA
+
+on:
+  workflow_call:
+    inputs:
+      app-name:
+        description: Human-readable PWA name used for the artifact and logs
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+          components: clippy, rustfmt
+
+      - name: Rust cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install Trunk
+        uses: taiki-e/install-action@trunk
+        with:
+          tool: trunk@0.22.2
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+      - name: Run clippy (host & wasm32)
+        run: |
+          cargo clippy --all-targets -- -D warnings
+          cargo clippy --target wasm32-unknown-unknown -- -D warnings
+
+      - name: Run tests
+        run: cargo test
+
+      - name: Verify bundled firmware matches sketch versions
+        run: python3 scripts/verify_firmware.py
+
+      - name: Build production WASM PWA bundle (${{ inputs.app-name }})
+        run: trunk build --release
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

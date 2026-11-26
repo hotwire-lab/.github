@@ -1,0 +1,63 @@
+name: HotWire Suite Consistency
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout hotwire-core
+        uses: actions/checkout@v4
+        with:
+          repository: hotwire-lab/hotwire-core
+          path: hotwire-core
+
+      - name: Checkout logic-analyzer
+        uses: actions/checkout@v4
+        with:
+          repository: hotwire-lab/logic
+          path: logic-analyzer
+
+      - name: Checkout oscilloscope
+        uses: actions/checkout@v4
+        with:
+          repository: hotwire-lab/scope
+          path: oscilloscope
+
+      - name: Checkout software-defined-radio
+        uses: actions/checkout@v4
+        with:
+          repository: hotwire-lab/sdr
+          path: software-defined-radio
+
+      - name: Checkout serial-terminal
+        uses: actions/checkout@v4
+        with:
+          repository: hotwire-lab/serial
+          path: serial-terminal
+
+      - name: Checkout signal-generator
+        uses: actions/checkout@v4
+        with:
+          repository: hotwire-lab/siggen
+          path: signal-generator
+
+      - name: Checkout landing page
+        uses: actions/checkout@v4
+        with:
+          repository: hotwire-lab/hotwire-lab.github.io
+          path: hotwire-lab.github.io
+
+      - name: Checkout suite tooling
+        uses: actions/checkout@v4
+        with:
+          path: .github-org
+
+      - name: Verify cross-repository consistency
+        run: python3 .github-org/scripts/verify_suite.py .
