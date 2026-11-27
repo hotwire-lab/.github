@@ -31,7 +31,7 @@ body:
     id: firmware
     attributes:
       label: Firmware & Transport
-      placeholder: "e.g. v1.2.0 (Web Serial), v2.0.0 (WebUSB), or Demo mode"
+      placeholder: "e.g. v1.2.1 (Web Serial), v2.1.1 (WebUSB), or Demo mode"
     validations:
       required: false
   - type: input
